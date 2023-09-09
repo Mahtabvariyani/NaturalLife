@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap");
+
+svg {
+  font-family: "Oranienbaum", sans-serif;
+  width: 100%;
+  height: 100%;
+}
+svg text {
+  animation: stroke 8s infinite alternate;
+  stroke-width: 2;
+  stroke: #86959e;
+  font-size: 101px;
+}
+@keyframes stroke {
+  0% {
+    fill: rgba(69, 230, 185, 0);
+    stroke: #86959e;
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 2;
+  }
+  70% {
+    fill: rgba(69, 230, 185, 0);
+    stroke: rgba(134, 149, 158, 1);
+  }
+  80% {
+    fill: rgba(69, 230, 185, 0);
+    stroke: rgba(134, 149, 158, 1);
+    stroke-width: 3;
+  }
+  100% {
+    fill: rgba(69, 230, 185, 1);
+    stroke: rgba(134, 149, 158, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}
+
+.wrapper {
+  background-color: #ffffff;
+}

@@ -51,6 +51,15 @@ app.use("/", reviewPageRoutes);
 
 
 
+const orderPageRoutes = require("./routes/orderPage.routes");
+app.use("/", orderPageRoutes);
+
+
+
+
+
+const firstPicInfoRoutes = require("./routes/firstPicInfo.routes");
+app.use("/", firstPicInfoRoutes);
 
 
 

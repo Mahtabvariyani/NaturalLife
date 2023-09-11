@@ -5,7 +5,8 @@
         <img src="/images/pngg.png" class="img-fluid" alt="Sample image" />
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form>
+        <form action="/signIn" method="POST">
+
           <div
             class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"
           >
@@ -36,8 +37,9 @@
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input
-              type="email"
-              id="form3Example3"
+              type="text"
+              name="email"
+              id="email"
               class="form-control form-control-lg"
               placeholder="Enter a valid email address"
             />
@@ -48,7 +50,8 @@
           <div class="form-outline mb-3">
             <input
               type="password"
-              id="form3Example4"
+              name="password"
+              id="password"
               class="form-control form-control-lg"
               placeholder="Enter password"
             />
@@ -73,10 +76,13 @@
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button
-              type="button"
+              type="submit"
               class="btn btn-primary btn-lg"
               style="padding-left: 2.5rem; padding-right: 2.5rem;"
             >Login</button>
+            {{#if errorMessage}}
+              <p class="error" style="color: red;font-size:20px">{{errorMessage}}</p>
+            {{/if}}
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
               <a href="/signUp" class="link-danger">Register</a></p>
           </div>

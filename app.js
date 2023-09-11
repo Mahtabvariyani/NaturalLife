@@ -37,6 +37,15 @@ app.use("/", signInRoutes);
 
 
 
+const ProfileDashBoardRoutes = require("./routes/ProFDash.routes");
+app.use("/", ProfileDashBoardRoutes);
+
+
+
+const forgetPassRoutes = require("./routes/forgetPass.routes");
+app.use("/", forgetPassRoutes);
+
+
 
 
 
@@ -60,8 +69,6 @@ app.use("/", orderPageRoutes);
 
 const firstPicInfoRoutes = require("./routes/firstPicInfo.routes");
 app.use("/", firstPicInfoRoutes);
-
-
 
 
 

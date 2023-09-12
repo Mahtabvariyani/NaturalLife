@@ -1,18 +1,19 @@
 const router = require("express").Router();
-const User = require('../models/User.model');
+const User = require('../../models/User.model');
 const bcryptjs = require('bcryptjs');
 
 
 /* GET home page */
 router.get("/signIn", (req, res) => {
-  res.render("signIn");
+  res.render("authViews/signIn");
 });
 
 router.post('/signIn', (req, res, next) => {
+  console.log('SESSION =====> ', req.session);
   const { email, password } = req.body;
   console.log(req.body)
   if (email === '' || password === '') {
-    res.render('signIn', {
+    res.render('authViews/signIn', {
       errorMessage: 'Please enter both, email and password to login.'
     });
     return;
@@ -20,28 +21,24 @@ router.post('/signIn', (req, res, next) => {
   User.findOne({ email: email })
 
     .then(user => {
-      console.log(user);
-      console.log('Email:', email);
-      console.log('Password:', password);
+      // console.log(user);
+      // console.log('Email:', email);
+      // console.log('Password:', password);
       if (!user) {
-        console.log("Email not registered. ");
-        res.render('signIn', { errorMessage: 'user not found.' });
+        console.log("Email not registered.");
+        res.render('authViews/signIn', { errorMessage: 'user not found.' });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
   
-
-        res.render('ProFDash', { user });
+        req.session.currentUser = user;
+        res.render('userView/ProFDash', { user });
       } else {
         console.log("Incorrect password. ");
-        res.render('signIn', { errorMessage: 'incorrect password.' });
+        res.render('authViews/signIn', { errorMessage: 'incorrect password.' });
       }
     })
     .catch(error => next(error));
 });
-
-
-
-
 
 
 

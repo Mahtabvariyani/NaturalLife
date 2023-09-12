@@ -1,15 +1,15 @@
 const router = require("express").Router();
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
-const User = require('../models/User.model');
+const User = require('../../models/User.model');
 
 
 /* GET home page */
 router.get("/signUp", (req, res) => {
-  res.render("signUp");
+  res.render("authViews/signUp");
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/signUp', (req, res, next) => {
   // console.log("The form data: ", req.body);
  
   const { username, email, password } = req.body;
@@ -26,7 +26,7 @@ router.post('/signup', (req, res, next) => {
     })
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
-      res.redirect('/ProFDash');
+      res.redirect('authViews/signIn');
     })
     .catch(error => next(error));
 });

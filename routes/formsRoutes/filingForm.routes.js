@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 
 router.get("/filingForm", (req, res) => {
 
-  res.render('filingForm');
+  res.render('formViews/filingForm');
 });
 
 router.post('/send',(req,res)=>{
@@ -47,7 +47,7 @@ router.post('/send',(req,res)=>{
       return  console.log(error);
     } else {
       console.log("Email sent:", info.response);
-      res.render('filingForm',{msg:'email has been sent'})
+      res.render('formViews/filingForm',{msg:'email has been sent'})
     }
   });
 

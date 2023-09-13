@@ -1,3 +1,12 @@
+<div id="custom-alert" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="closeCustomAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+
 <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -5,7 +14,7 @@
         <img src="/images/pngg.png" class="img-fluid" alt="Sample image" />
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form method="POST" action="/send">
+        <form method="POST" action="/send" onsubmit="return validateForm()">
           <div
             class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"
           >
@@ -58,7 +67,6 @@
             rows="7"
             style="background-color: rgb(241, 241, 241);"
           ></textarea>
-
           <div class="text-center text-lg-start mt-3 pt-2">
             <button
               type="submit"

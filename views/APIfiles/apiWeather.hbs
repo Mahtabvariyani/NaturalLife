@@ -1,0 +1,29 @@
+<section style="background-color: antiquewhite; margin-bottom: 30px; border: 2px solid black;">
+
+  {{!-- <div class="container" style="height: 400px;">
+    <h1>Weather</h1>
+    <form action="/weather" method="POST">
+      <input type="text" name="city" placeholder="Enter city name" />
+      <button type="submit">Get Weather</button>
+    </form> --}}
+    {{#if error}}
+      <p class="error">{{error}}</p>
+    {{else if weather}}
+      <div class="card" style="background-color: aqua;height:300px">
+        <p>
+          <i class="fas fa-thermometer-half"></i>
+          {{weather.main.temp}}&deg;F
+        </p>
+        <p>
+          <i class="fas fa-cloud"></i>
+          {{weather.weather.[0].main}}
+        </p>
+        <p>
+          <i class="fas fa-map-marker-alt"></i>
+          {{weather.name}}, {{weather.sys.country}}
+        </p>
+      </div>
+    {{/if}}
+  </div>
+
+</section>

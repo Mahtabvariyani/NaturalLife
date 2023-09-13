@@ -6,7 +6,6 @@ const app = express();
 require("./config")(app);
 require('./config/session.config')(app);
 
-
 const capitalize = require("./utils/capitalize");
 
 const projectName = "NaturalLife";
@@ -38,13 +37,9 @@ const signupRoutes = require("./routes/authRoutes/signUp.routes");
 app.use("/authViews", signupRoutes);
 app.use("/", signupRoutes);
 
-
-
 const signOutRoutes = require("./routes/authRoutes/signOut.routes");
 app.use("/authViews", signOutRoutes);
 app.use("/", signOutRoutes);
-
-
 
 const reviewPageRoutes = require("./routes/userRoutes/reviewPage.routes");
 app.use("/", reviewPageRoutes);
@@ -53,8 +48,11 @@ app.use("/userView", reviewPageRoutes);
 const orderPageRoutes = require("./routes/formsRoutes/orderPage.routes");
 app.use("/", orderPageRoutes);
 
-const firstPicInfoRoutes = require("./routes/firstPicInfo.routes");
-app.use("/", firstPicInfoRoutes);
+
+
+const apiweatherRoute = require("./routes/weather.routes");
+app.use("/", apiweatherRoute);
+
 
 require("./error-handling")(app);
 module.exports = app;

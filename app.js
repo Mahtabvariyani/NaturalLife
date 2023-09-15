@@ -1,10 +1,9 @@
-
 require("dotenv").config();
 require("./db");
 const express = require("express");
 const app = express();
 require("./config")(app);
-require('./config/session.config')(app);
+require("./config/session.config")(app);
 
 const capitalize = require("./utils/capitalize");
 
@@ -15,12 +14,10 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
 
-//Question is it okay if i put to directory??
 const filingFormRoutes = require("./routes/formsRoutes/filingForm.routes");
 app.use("/formViews", filingFormRoutes);
 app.use("/", filingFormRoutes);
 
-  
 const signInRoutes = require("./routes/authRoutes/signIn.routes");
 app.use("/authViews", signInRoutes);
 app.use("/", signInRoutes);
@@ -46,13 +43,11 @@ app.use("/", reviewPageRoutes);
 app.use("/userView", reviewPageRoutes);
 
 const orderPageRoutes = require("./routes/formsRoutes/orderPage.routes");
+app.use("/formViews", orderPageRoutes);
 app.use("/", orderPageRoutes);
-
-
 
 const apiweatherRoute = require("./routes/weather.routes");
 app.use("/", apiweatherRoute);
-
 
 require("./error-handling")(app);
 module.exports = app;

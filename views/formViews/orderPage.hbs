@@ -1,3 +1,21 @@
+<div
+  id="custom-alert"
+  class="alert alert-danger alert-dismissible fade show"
+  role="alert"
+  style="display: none;"
+>
+  <strong>Holy guacamole!</strong>
+  <button
+    type="submit"
+    class="close"
+    data-dismiss="alert"
+    aria-label="Close"
+    onclick="closeCustomAlert()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
 <section class="order-form m-4">
   <div class="container pt-4">
 
@@ -7,15 +25,18 @@
       </div>
 
       <div class="col-12 px-4">
-        <h1>You can see my Order Form</h1>{{msg}}
+        <h1> Order </h1>
+        <p style="color: red;"> <strong>{{msg}}</strong> </p>
+
+        <p style="color: red;"> <strong> {{errorMessage}}</strong> </p>
 
         <hr class="mt-1" />
       </div>
 
       <div class="col-12">
-        <form action="/some" method="POST">
+        <form action="/some" method="POST" onsubmit="return validateForm()">
           <fieldset>
-            <legend>Personal Information</legend>
+            <legend> Information</legend>
             <div class="row mx-4">
               <div class="col-12">
                 <label class="order-form-label">Name</label>
@@ -23,6 +44,7 @@
               <div class="col-sm-6">
                 <div class="form-outline">
                   <input
+                    required
                     type="text"
                     class="form-control order-form-input"
                     name="firstName"
@@ -34,6 +56,7 @@
               <div class="col-sm-6 mt-2 mt-sm-0">
                 <div class="form-outline">
                   <input
+                    required
                     type="text"
                     class="form-control order-form-input"
                     name="lastName"
@@ -51,6 +74,7 @@
               <div class="col-12">
                 <div class="form-outline">
                   <input
+                    required
                     type="email"
                     class="form-control order-form-input"
                     name="email"
@@ -67,6 +91,7 @@
               <div class="col-12">
                 <div class="form-outline">
                   <input
+                    required
                     type="phone"
                     id="phone"
                     class="form-control order-form-input"
@@ -78,26 +103,78 @@
           </fieldset>
 
           <fieldset>
-            <legend> Details</legend>
+            <legend> Our Offer</legend>
             <div class="row mt-3 mx-4">
 
               <div class="mb-3">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  name="select"
+                >
+                  <option selected>Special Summer Session Offer</option>
+                  <option value="1">Watermelon Slices - Refreshing slices of
+                    juicy watermelon.</option>
+                  <option value="2">Corn Ears - Freshly harvested sweet corn on
+                    the cob</option>
+                  <option value="4">Berry Baskets - Containers filled with ripe
+                    and delicious berries.</option>
+                  <option value="5">Tomato Crates - Crates packed with
+                    sun-ripened tomatoes.</option>
+                  <option value="6">Peach Bushels - Abundant baskets of sweet
+                    and juicy peaches.</option>
+                  <option value="7">Cucumber Barrels - Barrels full of crisp and
+                    crunchy cucumbers.</option>
+                  <option value="8">Strawberry Pints - Pints of succulent, red
+                    strawberries.</option>
+                  <option value="9">Zucchini Bundles - Bundles of tender and
+                    green zucchini.</option>
+                  <option value="10">Lemon Crates - Crates filled with tangy and
+                    aromatic lemons.</option>
 
-                <label for="formFile" class="order-form-label">Upload your
-                  Recepie</label>
-                <input
-                  class="form-control"
-                  type="file"
-                  id="docreciep"
-                  name="docreciep"
-                />
+                  <option value="11">Honey Jars - Jars filled with golden, pure
+                    honey.</option>
+
+                  <option value="12">Potato Sacks - Sacks of freshly dug, earthy
+                    potatoes.</option>
+
+                  <option value="13">Grape Clusters - Clusters of sweet and
+                    plump grapes.</option>
+
+                  <option value="14">Eggplant Bushels - Bushels of versatile and
+                    rich eggplants.</option>
+
+                  <option value="15">Cherry Baskets - Baskets brimming with
+                    sweet and juicy cherries.</option>
+
+                  <option value="16">Basil Bunches - Bunches of fragrant and
+                    flavorful basil leaves.</option>
+
+                  <option value="17">Carrot Bunches - Bunches of crisp and
+                    vibrant orange carrots.</option>
+
+                  <option value="18">Lettuce Heads - Heads of fresh and crisp
+                    lettuce leaves.</option>
+
+                  <option value="19">Pea Pods - Pods bursting with tender green
+                    peas.</option>
+
+                  <option value="20">Spinach Bundles - Bundles of nutritious and
+                    leafy spinach.</option>
+
+                  <option value="21">Plum Crates - Crates filled with sweet and
+                    juicy plums.</option>
+                  <option value="22">Rosé Bottles - Bottles of chilled and
+                    refreshing rosé wine.</option>
+                </select>
+
               </div>
 
             </div>
 
             <div class="row mt-3 mx-4">
               <div class="col-12">
-                <label class="order-form-label">Details to add</label>
+                <label class="order-form-label">Article ID</label>
               </div>
               <div class="col-12">
                 <div class="form-outline">
@@ -107,12 +184,13 @@
                     class="form-control order-form-input"
                     name="detail"
                   />
-                  <label class="form-label" for="form5">More Info</label>
+                  <label class="form-label" for="form5">ID number of the Product</label>
                 </div>
               </div>
               <div class="col-12 mt-2">
                 <div class="form-outline">
                   <input
+                    required
                     type="text"
                     id="address"
                     class="form-control order-form-input"
@@ -124,6 +202,7 @@
               <div class="col-sm-6 mt-2 pe-sm-2">
                 <div class="form-outline">
                   <input
+                    required
                     type="text"
                     id="city"
                     class="form-control order-form-input"
@@ -135,6 +214,7 @@
               <div class="col-sm-6 mt-2 ps-sm-0">
                 <div class="form-outline">
                   <input
+                    required
                     type="text"
                     id="region"
                     class="form-control order-form-input"
@@ -146,6 +226,7 @@
               <div class="col-sm-6 mt-2 pe-sm-2">
                 <div class="form-outline">
                   <input
+                    required
                     type="text"
                     id="postal"
                     class="form-control order-form-input"
@@ -157,6 +238,7 @@
               <div class="col-sm-6 mt-2 ps-sm-0">
                 <div class="form-outline">
                   <input
+                    required
                     type="text"
                     id="country"
                     class="form-control order-form-input"
@@ -171,15 +253,9 @@
           <div class="row mt-3 mx-4">
             <div class="col-12">
               <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="checkbox"
-                  name="checkbox"
-                />
+
                 <label class="form-check-label" for="flexCheckDefault">
-                  Im already a Member or
+                  Not a Member?
                   <a
                     href="../authViews/signUp"
                     style="color: rgb(181, 34, 34);text-weight:bold;"
@@ -194,6 +270,7 @@
               <button
                 type="submit"
                 id="submit"
+                id="custom-alert"
                 class="btn btn-primary d-block mx-auto btn-submit"
               >Submit</button>
             </div>
@@ -212,24 +289,24 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="card-wrapper container-sm d-flex justify-content-around">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 20rem;">
           <img src="/images/44.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <small class="card-title">Article Number: 00 | ID: P3443267</small>
 
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 20rem;">
           <img src="/images/39.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <small class="card-title">Article Number: 00 | ID: P347367</small>
 
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 20rem;">
           <img src="/images/41.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <small class="card-title">Article Number: 00 | ID: P34267</small>
 
           </div>
         </div>
@@ -237,23 +314,24 @@
     </div>
     <div class="carousel-item">
       <div class="card-wrapper container-sm d-flex justify-content-around">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 20rem;">
           <img src="/images/38.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-
-          </div>
-        </div><div class="card" style="width: 18rem;">
-          <img src="/images/15.webp" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <small class="card-title">Article Number: 00 | ID: P23456</small>
 
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width:21rem;">
+          <img src="/images/15.webp" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <small class="card-title">Article Number: 00 | ID: P34567</small>
+
+          </div>
+        </div>
+        <div class="card" style="width: 20rem;">
           <img src="/images/19.jpeg" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <small class="card-title">Article Number: 00 | ID: P34267</small>
 
           </div>
         </div>
@@ -261,24 +339,24 @@
     </div>
     <div class="carousel-item">
       <div class="card-wrapper container-sm d-flex justify-content-around">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 20rem;">
           <img src="/images/34.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <small class="card-title">Article Number: 00 | ID: P34287</small>
 
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 20rem;">
           <img src="/images/45.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <small class="card-title">Article Number: 00 | ID: P44267</small>
 
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 20rem;">
           <img src="/images/31.webp" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <small class="card-title">Article Number: 00 | ID: P34288</small>
 
           </div>
         </div>

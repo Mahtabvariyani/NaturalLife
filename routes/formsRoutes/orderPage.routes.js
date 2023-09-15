@@ -2,55 +2,77 @@ const router = require("express").Router();
 const nodemailer = require("nodemailer");
 const passport = require("passport");
 const Order = require("../../models/Order.model");
-const User = require("../../models/User.model"); // Import the Mongoose model
+const User = require("../../models/User.model"); 
 
 
-/* GET home page */
 router.get("/orderPage", (req, res) => {
   res.render("formViews/orderPage");
 });
 
+
+
+
+
+
+
+
 //CurrentUser
 
 router.post("/some", (req, res) => {
-  const  newOrder = new Order({
+  if (!req.session.currentUser) {
+    return res.render("formViews/orderPage", {
+      errorMessage: "You are not Signed In. Please Sign In or register to place an order.",
+    });
+  }
+
+
+
+
+
+  const newOrder = new Order({
+    user:req.session.currentUser._id,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     phone: req.body.phone,
-    docreciep: req.body.docreciep,
     detail: req.body.detail,
     address: req.body.address,
     city: req.body.city,
     region: req.body.region,
     postal: req.body.postal,
     country: req.body.country,
-    checkbox: req.body.checkbox,
-  });
+    select: req.body.select,
+});
 
-  const detail = `
-  <p>You have a new Order</p>
-  <h3>Details:</h3>
-  <ul>
-  <li> firstName :${req.body.firstName}</li>
-  <li>  lastName:${req.body.lastName}</li>
-  <li>  email:${req.body.email}</li>
-  <li> phone :${req.body.phone}</li>
-  <li> docreciep :${req.body.docreciep}</li>
-  <li>  detail:${req.body.detail}</li>
-  <li>  address:${req.body.address}</li>
-  <li>  city:${req.body.city}</li>
-  <li>  region:${req.body.region}</li>
-  <li> postal :${req.body.postal}</li>
-  <li>  country:${req.body.country}</li>
-  <li>  checkbox:${req.body.checkbox}</li>
-  
-  </ul>
-  
-  `;
-
-
-
+newOrder.save()
+    .then((order) => {
+      console.log('Order saved:', order);
+        return User.findByIdAndUpdate(req.session.currentUser._id, {
+            $push: { order: order._id },
+        });
+    })
+    .then(() => {
+        // res.redirect('/ProFDash');
+        const detail = `
+        <p>You have a new Order</p>
+        <h3>Details:</h3>
+        <ul>
+        <li> firstName :${req.body.firstName}</li>
+        <li>  lastName:${req.body.lastName}</li>
+        <li>  email:${req.body.email}</li>
+        <li> phone :${req.body.phone}</li>
+        <li> docreciep :${req.body.docreciep}</li>
+        <li>  detail:${req.body.detail}</li>
+        <li>  address:${req.body.address}</li>
+        <li>  city:${req.body.city}</li>
+        <li>  region:${req.body.region}</li>
+        <li> postal :${req.body.postal}</li>
+        <li>  country:${req.body.country}</li>
+        <li>  checkbox:${req.body.checkbox}</li>
+        
+        </ul>
+        
+        `;
 
 
 
@@ -69,7 +91,7 @@ router.post("/some", (req, res) => {
     from: req.body.email,
     to: "mahtabvariyani@gmail.com",
     subject: `Message from ${req.body.firstName}: ${req.body.lastName}`,
-    text: req.body.detail,
+    text: req.body.text,
     html: detail,
   };
 
@@ -80,9 +102,23 @@ router.post("/some", (req, res) => {
       return console.log(error);
     } else {
       console.log("Email sent:", info.response);
-      res.render("orderPage", { msg: "email has been sent" });
+      res.render("formViews/orderPage", { msg: "You sent an Order,we will Contact You Shortly" });
     }
   });
+    })
+    .catch((error) => {
+      console.error('Error saving order:', error);
+        console.error(error);
+     
+    });
+
+
+
+
+
+
+
+
 });
 
 

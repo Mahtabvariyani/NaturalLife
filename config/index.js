@@ -7,11 +7,6 @@ const favicon = require("serve-favicon");
 const jsonwebtoken = require("jsonwebtoken");
 const path = require("path");
 
-
-
-
-
-
 module.exports = (app) => {
   app.use(logger("dev"));
 
@@ -20,9 +15,6 @@ module.exports = (app) => {
   app.use(cookieParser());
   app.use(bodyParser.json());
 
-
-  
-  
   app.set("views", path.join(__dirname, "..", "views"));
 
   app.set("view engine", "hbs");

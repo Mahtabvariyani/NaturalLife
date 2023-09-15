@@ -1,11 +1,4 @@
 <section style="background-color: antiquewhite; margin-bottom: 30px; border: 2px solid black;">
-
-  {{!-- <div class="container" style="height: 400px;">
-    <h1>Weather</h1>
-    <form action="/weather" method="POST">
-      <input type="text" name="city" placeholder="Enter city name" />
-      <button type="submit">Get Weather</button>
-    </form> --}}
     {{#if error}}
       <p class="error">{{error}}</p>
     {{else if weather}}
@@ -25,5 +18,4 @@
       </div>
     {{/if}}
   </div>
-
 </section>

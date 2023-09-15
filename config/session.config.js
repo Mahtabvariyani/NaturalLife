@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const session = require('express-session');
+const session = require("express-session");
 
-const MongoStore = require('connect-mongo');
+const MongoStore = require("connect-mongo");
 
-
-module.exports = app => {
-  app.set('trust proxy', 1);
+module.exports = (app) => {
+  app.set("trust proxy", 1);
 
   app.use(
     session({
@@ -14,14 +13,15 @@ module.exports = app => {
       resave: true,
       saveUninitialized: false,
       cookie: {
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: process.env.NODE_ENV === "production",
         httpOnly: true,
-        maxAge: 60000
-      }, 
+        maxAge: 86400000,
+      },
       store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/basic-auth'
-      })
+        mongoUrl:
+          process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/basic-auth",
+      }),
     })
   );
 };

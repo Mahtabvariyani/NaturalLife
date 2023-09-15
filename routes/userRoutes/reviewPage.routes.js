@@ -27,45 +27,40 @@ router.post("/reviewPage", (req, res, next) => {
     });
 });
 //editCommens
-router.get('/editComments/:id',(req,res,next)=>{
-    const commentId = req.params.id;
-    Comment.findById(commentId)
-    .then(upComment=>{
-        res.render("userview/editComments",{
-            upComment
-        });
+router.get("/editComments/:id", (req, res, next) => {
+  const commentId = req.params.id;
+  Comment.findById(commentId)
+    .then((upComment) => {
+      res.render("userview/editComments", {
+        upComment,
+      });
     })
-    .catch(error=>{
-        console.log(error);
-        next(error);
+    .catch((error) => {
+      console.log(error);
+      next(error);
     });
 });
 
-
-router.post('/editComments/:id', (req, res, next) => {
-    const editedText = req.body.editedText;
-    const commentId = req.params.id;
-    Comment.findByIdAndUpdate(commentId, { text: editedText }, { new: true })
-    .then(edited => {
+router.post("/editComments/:id", (req, res, next) => {
+  const editedText = req.body.editedText;
+  const commentId = req.params.id;
+  Comment.findByIdAndUpdate(commentId, { text: editedText }, { new: true })
+    .then((edited) => {
       console.log(edited);
       console.log(editedText);
-      res.redirect('/userView/reviewPage'); 
+      res.redirect("/userView/reviewPage");
     })
 
-    .catch(error => {
-        next(error);
-      });
-  });
-
-
-  router.post('/reviewPage/:commentId/delete', (req, res, next) => {
-    const commentId = req.params.commentId; // Match the parameter name
-    Comment.findByIdAndDelete(commentId)
-        .then(() => res.redirect('/userView/reviewPage')) // Updated redirect path
-        .catch(error => next(error));
+    .catch((error) => {
+      next(error);
+    });
 });
 
-
-
+router.post("/reviewPage/:commentId/delete", (req, res, next) => {
+  const commentId = req.params.commentId;
+  Comment.findByIdAndDelete(commentId)
+    .then(() => res.redirect("/userView/reviewPage"))
+    .catch((error) => next(error));
+});
 
 module.exports = router;

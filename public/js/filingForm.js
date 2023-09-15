@@ -74,7 +74,6 @@ function validate(val) {
   return flag;
 }
 
-
 function validateForm() {
   let fullName = document.getElementById("fullName");
   let email = document.getElementById("email");
@@ -83,15 +82,15 @@ function validateForm() {
   let alertMessage = customAlert.querySelector("strong");
 
   if (fullName.value === "" || email.value === "" || phone.value === "") {
-    alertMessage.textContent = "You should check in on some of those fields below.";
+    alertMessage.textContent = "Fill the form completely.";
     customAlert.style.display = "block";
-    return false; 
+    return false;
   }
 
   return true;
 }
 
 function closeCustomAlert() {
-  var customAlert = document.getElementById("custom-alert");
+  let customAlert = document.getElementById("custom-alert");
   customAlert.style.display = "none";
 }

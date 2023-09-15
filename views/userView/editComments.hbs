@@ -38,14 +38,47 @@
 
 </div>
 
-<form action="/editComments/{{upComment._id}}" method="POST">
-            <div class="form-group">
-   
-            </div>
-            <input
-              type="text"
-              name="editedText"
-              value="{{ upComment.text }}"
-            />
-            <button class="btn btn-primary">Save</button>
- </form>
+
+
+
+
+<section>
+  <div class="container my-5 py-5" >
+    <div class="row d-flex justify-content-center" >
+      <div class="col-md-12 col-lg-10 col-xl-8" >
+        <div class="card" style="background-color: rgb(240, 240, 240);">
+          <div class="card-body">
+          <form action="/editComments/{{upComment._id}}" method="POST">
+              <div class="form-group border border-gray">
+                <input
+                style="height:15vh;"
+                  name="editedText"
+                  class="form-control"
+                  placeholder="Leave a comment here"
+                  id="floatingTextarea2"
+                  rows="5"
+                  type="text"
+                  value="{{ upComment.text }}"
+                  required
+                ></input>
+                <input type="hidden" name="pageId"/>
+              <button class="btn btn-success" style="margin-top:9px;">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+

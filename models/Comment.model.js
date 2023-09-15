@@ -4,15 +4,15 @@ const Commentnew = new Schema(
   {
     Name: {
       type: String,
-      required:true
+      required: true,
     },
     text: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

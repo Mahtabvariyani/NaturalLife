@@ -46,7 +46,6 @@
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
 
-          <!-- Password input -->
           <div class="form-outline mb-3">
             <input
               type="password"
@@ -81,7 +80,10 @@
               style="padding-left: 2.5rem; padding-right: 2.5rem;"
             >Login</button>
             {{#if errorMessage}}
-              <p class="error" style="color: red;font-size:20px">{{errorMessage}}</p>
+              <p
+                class="error"
+                style="color: red;font-size:20px"
+              >{{errorMessage}}</p>
             {{/if}}
             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
               <a href="/signUp" class="link-danger">Register</a></p>
@@ -109,6 +111,5 @@
         <i class="fab fa-linkedin-in"></i>
       </a>
     </div>
-    <!-- Right -->
   </div>
 </section>

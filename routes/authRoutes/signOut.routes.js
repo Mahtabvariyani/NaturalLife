@@ -1,11 +1,19 @@
 const router = require("express").Router();
+const {
+  isLoggedIn,
+  isLoggedOut,
+} = require("../../routes/middleware/route-guard");
 
-router.post('/signOut', (req, res, next) => {
-    console.log(req)
-    req.session.destroy(err => {
-      if (err) next(err);
-      res.redirect('/authViews/signIn');
-    });
+router.get("/signOut", isLoggedOut, (req, res) =>
+  res.render("authViews/signUp")
+);
+
+router.post("/signOut", (req, res, next) => {
+  console.log(req);
+  req.session.destroy((err) => {
+    if (err) next(err);
+    res.redirect("/");
   });
+});
 
-  module.exports = router;
+module.exports = router;

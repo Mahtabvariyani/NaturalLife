@@ -52,7 +52,6 @@ newOrder.save()
         });
     })
     .then(() => {
-        // res.redirect('/ProFDash');
         const detail = `
         <p>You have a new Order</p>
         <h3>Details:</h3>
@@ -61,14 +60,14 @@ newOrder.save()
         <li>  lastName:${req.body.lastName}</li>
         <li>  email:${req.body.email}</li>
         <li> phone :${req.body.phone}</li>
-        <li> docreciep :${req.body.docreciep}</li>
+     
         <li>  detail:${req.body.detail}</li>
         <li>  address:${req.body.address}</li>
         <li>  city:${req.body.city}</li>
         <li>  region:${req.body.region}</li>
         <li> postal :${req.body.postal}</li>
         <li>  country:${req.body.country}</li>
-        <li>  checkbox:${req.body.checkbox}</li>
+        <li>  select:${req.body.select}</li>
         
         </ul>
         
